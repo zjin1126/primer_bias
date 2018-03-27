@@ -28,6 +28,12 @@ def main():
             ref_site[primer_name] = (int(start), int(end))
     print('Done!', file=sys.stderr)
 
+    primer_pairs = []
+    with open(args.primer_pair) as fh:
+        for line in fh:
+            fwd, rev = line.rstrip().split()
+            primer_pairs.append((fwd, rev))
+
     with open(args.tax_tid, mode='rb') as fh:
         acc_tid = pickle.load(fh)
 
@@ -45,11 +51,6 @@ def main():
                 # hit.add(acc_tid[acc])
                 hit_result[primer_name].add(acc_tid[acc])
 
-    primer_pairs = []
-    with open(args.primer_pair) as fh:
-        for line in fh:
-            fwd, rev = line.rstrip().split()
-            primer_pairs.append((fwd, rev))
 
     for pp in primer_pairs:
         with open(args.tax_tree, mode='rb') as fh:
