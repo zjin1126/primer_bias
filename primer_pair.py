@@ -69,11 +69,15 @@ def main():
             for curr in pre.child:
                 if 'done' not in curr.data:
                     if not curr.child:  # child empty
-                        curr.data['count'] = 1
-                        # if curr.tid in hit_result[primer]:
-                        if curr.tid in hit_result[pp[0]] and curr.tid in hit_result[pp[1]]:
-                            curr.data['cov'] = 1
+                        if (curr.data['start'] <= ref_site[pp[0]][0] and
+                            curr.data['end'] >= ref_site[pp[1]][1]):
+                            curr.data['count'] = 1
+                            if curr.tid in hit_result[pp[0]] and curr.tid in hit_result[pp[1]]:
+                                curr.data['cov'] = 1
+                            else:
+                                curr.data['cov'] = 0
                         else:
+                            curr.data['count'] = 0
                             curr.data['cov'] = 0
                         curr.data['done'] = True
                         continue  # cal next child

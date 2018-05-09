@@ -24,7 +24,7 @@ python scripts/convert_position.py pos_info_new.pickle temp_result.txt > temp_re
 python scripts/binding_site.py temp_result_conv.txt U00096.223771.225312 > temp_binding_site.txt
 # calculate primer coverage
 python scripts/calculate_coverage.py tax_tree.pickle tax_tid.pickle temp_binding_site.txt temp_result_conv.txt > result.txt
-# filter primer (coverage > 75%)
+# filter primer (coverage > 85%)
 python scripts/filter_primer.py scripts/primers.fa result.txt temp_binding_site.txt > primer_pair.txt
 # calculate primer pair coverage
 python scripts/primer_pair.py tax_tree.pickle tax_tid.pickle temp_binding_site.txt primer_pair.txt temp_result_conv.txt > pair_result.txt

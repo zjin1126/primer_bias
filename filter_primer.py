@@ -61,7 +61,7 @@ def main():
     # filter primer by converage
     filtered_primer = []
     for primer in primer_cov:
-        if primer_cov[primer]['Bacteria'] >= 0.75 or primer_cov[primer]['Archaea'] >= 0.75:
+        if primer_cov[primer]['Bacteria'] >= 0.85 or primer_cov[primer]['Archaea'] >= 0.85:
             filtered_primer.append(primer)
 
     # filter primer pair by delta Tm

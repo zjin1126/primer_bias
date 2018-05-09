@@ -33,7 +33,7 @@ def main():
     with open(args.tax_tid, mode='rb') as fh:
         acc_tid = pickle.load(fh)
     # print('Done!', file=sys.stderr)
-
+    
     print('Read USEARCH result from {}...'.format(
         args.usearch_result), file=sys.stderr)
 
@@ -68,10 +68,15 @@ def main():
             for curr in pre.child:
                 if 'done' not in curr.data:
                     if not curr.child:  # child empty
-                        curr.data['count'] = 1
-                        if curr.tid in hit_result[primer]:
-                            curr.data['cov'] = 1
+                        if (curr.data['start'] <= ref_site[primer][0] and
+                            curr.data['end'] >= ref_site[primer][1]):
+                            curr.data['count'] = 1
+                            if curr.tid in hit_result[primer]:
+                                curr.data['cov'] = 1
+                            else:
+                                curr.data['cov'] = 0
                         else:
+                            curr.data['count'] = 0
                             curr.data['cov'] = 0
                         curr.data['done'] = True
                         continue  # cal next child
