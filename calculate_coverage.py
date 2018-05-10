@@ -88,10 +88,9 @@ def main():
         print('Done!', file=sys.stderr)
         print('>' + primer)
         for c in root_node.child:
+            coverage = 0
             if c.data['count']:
                 coverage = c.data['cov'] / c.data['count']
-            else:
-                coverage = 0
             print('{}\t{}\t{}\t{:.4f}'.format(
                 c.data['name'], c.data['cov'], c.data['count'], coverage))
         not_match = []
