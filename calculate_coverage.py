@@ -33,7 +33,7 @@ def main():
     with open(args.tax_tid, mode='rb') as fh:
         acc_tid = pickle.load(fh)
     # print('Done!', file=sys.stderr)
-    
+
     print('Read USEARCH result from {}...'.format(
         args.usearch_result), file=sys.stderr)
 
@@ -88,8 +88,8 @@ def main():
         print('Done!', file=sys.stderr)
         print('>' + primer)
         for c in root_node.child:
-            print('{}\t{}\t{:.4f}'.format(
-                c.data['name'], c.data['cov'], c.data['cov'] / c.data['count']))
+            print('{}\t{}\t{}\t{:.4f}'.format(
+                c.data['name'], c.data['cov'], c.data['count'], c.data['cov'] / c.data['count']))
         not_match = []
         for child in root_node.child[0].child:
             if child.data['cov'] == 0:
